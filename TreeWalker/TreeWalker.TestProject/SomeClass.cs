@@ -12,6 +12,8 @@
         public int Count { get; set; }
         public string Name { get; set; } = "Default";
 
+        private bool ToDoRename { get; set; }
+
         public void DoSomething()
         {
             Console.WriteLine("Doing something...");
