@@ -14,6 +14,12 @@ namespace SourceGenerator.Runner.Test
         public int MyProperty { get; set; }
     }
 
+    [TestUser]
+    public partial class User3a
+    {
+    
+    }
+
     // uncomment to get custom analysis warning
     //[TestUser]
     //public class User4

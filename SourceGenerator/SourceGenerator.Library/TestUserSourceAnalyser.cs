@@ -58,10 +58,10 @@ namespace SourceGenerator.Library
 
     public static class TestUserDiagnosticsDescriptors
     {
-        public static readonly DiagnosticDescriptor TestUserClassMustBePartial 
+        public static readonly DiagnosticDescriptor TestUserClassMustBePartial
             = new("TST001",                               // id
                  "TestUser class must be partial",        // title
-                 "The enumeration '{0}' must be partial", // message
+                 "The class '{0}' must be partial", // message, note the {0} that will be replaced
                  nameof(TestUserSourceAnalyser),          // category
                  DiagnosticSeverity.Error,
                  true);

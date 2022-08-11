@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -40,13 +41,29 @@ namespace SourceGenerator.Library
 
         private string GenerateTestUser(string @namespace, string @class)
         {
-            var name = "Ferdi Meijer";
+            var randomUser = RandomUserFactory.Create();
             var sourceCode = $@"
-namespace {@namespace} {{
+namespace {@namespace} 
+{{
 
-    public partial class {@class} {{
+    public partial class {@class}
+    {{
+        public string Name {{ get; set; }}= @""{randomUser.Name}"";
+        
+        public string Username {{ get; set; }}= @""{randomUser.Username}"";
 
-        public string Name {{ get; set; }}= @""{name}"";
+        public string Email {{ get; set; }}= @""{randomUser.Email}"";
+        
+        public string Address {{ get; set; }}= @""{randomUser.Address}"";
+
+        public List<string> Hobbies {{ get; set; }}= new List<string> {{ {randomUser.Hobbies.Select(h => $"\"{h}\"").ToCsv()} }};
+        
+        public DateTime BirthDay {{ get; set; }}= DateTime.Parse(@""{randomUser.BirthDay}"");
+
+        public override string ToString()
+        {{
+            return $""User {{Name}} BirthDay {{BirthDay}} Address:{{Address}} Email:{{Email}} Hobbies1:{{Hobbies.Count}}"";
+        }}
     }}
 }}
 ";

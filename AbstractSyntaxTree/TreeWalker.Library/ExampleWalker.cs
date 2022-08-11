@@ -33,16 +33,15 @@ namespace TreeWalker.Library
             if (classDeclaration != null)
             {
                 Console.Write($"...that is in class with name '{classDeclaration?.Identifier.Text}'");
-
             }
 
             if (classDeclaration?.ContainsDiagnostics == true)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"...and it contains a problem.");
+                Console.Write("...and it contains a problem.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            
+
             Console.WriteLine();
 
             base.VisitMethodDeclaration(node);
@@ -66,7 +65,6 @@ namespace TreeWalker.Library
 
             var argumentCount = node.ArgumentList.Arguments.Count;
             Console.WriteLine($"{nameof(VisitInvocationExpression)}: Found {node} expression with {argumentCount} arguments in method with name '{methodDeclaration?.Identifier.Text}' that is in class with name '{classDeclaration?.Identifier.Text}'");
-            
             Console.WriteLine();
 
             base.VisitInvocationExpression(node);

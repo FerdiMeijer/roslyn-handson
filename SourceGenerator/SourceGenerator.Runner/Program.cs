@@ -5,7 +5,7 @@ using SourceGenerator.Runner.Test;
 //HelloWorldGenerated.HelloWorld.SayHello();
 
 var user1 = new User1();
-Console.WriteLine(user1.Name);
+Console.WriteLine(user1);
 
 var user2 = new User2();
-Console.WriteLine(user2.Name);
+Console.WriteLine(user2);
