@@ -3,14 +3,21 @@
 	<PropertyGroup>
 		<!--The target framework of the project containing the Source Generator should be set to netstandard2.0, otherwise some IDEs may refuse loading the DLL. For example, JetBrains Rider 2021.3.2 has no issues with netstandard2.1 but Visual Studio 2022 (17.0.4) demands netstandard2.0. -->
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<!--<GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<!-- We don't want this assembly copied to in referencing projects' output folder (it is not needed at runtime) -->		
-		<!--<IncludeBuildOutput>false</IncludeBuildOutput>-->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<LangVersion>Latest</LangVersion> <!--probably C# 9.0-->
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" PrivateAssets="all" />
+	</ItemGroup>
+	
+	<!-- This ensures the library will be packaged as a source generator when we use `dotnet pack` -->
+	<ItemGroup>
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<!-- Package the Faker.Data dependency alongside the generator assembly -->
+		<!--<None Include="$(Faker_Data)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
 	</ItemGroup>
 	
 	<!--Generator package dependencies-->
@@ -20,13 +27,6 @@
 		<!-- Set GeneratePathProperty=true so we can reference the binaries via the Faker_Data property -->
 		<PackageReference Include="Faker.Data" Version="2.0.0" GeneratePathProperty="true" PrivateAssets="all" />
 		<!--<PackageReference Include="Newtonsoft.Json" Version="12.0.3" GeneratePathProperty="true" PrivateAssets="all" />-->
-	</ItemGroup>
-	
-	<!-- This ensures the library will be packaged as a source generator when we use `dotnet pack` -->
-	<ItemGroup>
-		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-		<!-- Package the Faker.Data dependency alongside the generator assembly -->
-		<!--<None Include="$(Faker_Data)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
 	</ItemGroup>
 	
 	<PropertyGroup>
