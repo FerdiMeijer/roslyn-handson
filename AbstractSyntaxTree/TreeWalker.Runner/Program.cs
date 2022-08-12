@@ -26,6 +26,7 @@ static void TodoWalk()
         // TODO 1: finish <MyFirstStepsWalker> to list all the properties of <SomeClass> from the TreeWalker.TestProject
         // Use the Syntax Visualizer to find the SyntaxNodeType of a Class' property.
         // To install the Syntax Visualizer => Visual Studio Installer => Individual Components=> ​[v] DGML Editor
+        // Rider?: https://plugins.jetbrains.com/plugin/16356-syntax-visualizer-for-rider
 
         var firstWalker = new MyFirstStepsWalker();
         firstWalker.Visit(root);
