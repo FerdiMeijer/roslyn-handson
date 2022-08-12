@@ -5,37 +5,14 @@ using TreeWalker.Library;
 
 Console.WriteLine("Start walking");
 
-FirstWalk();
+ExampleSyntaxTreeRunner.Run();
 
-//TodoWalk();
+ExampleSemanticRunner.Run();
+ExampleSemanticRunner.RunDataFlowAnalysis();
+
+TodoWalk();
 
 Console.WriteLine("Finished");
-
-static void FirstWalk()
-{
-    var programText = @"
-    interface IFirstInteface { 
-        public void MethodOne();
-    }
-
-    class FirstClass: IFirstInteface { 
-        public void MethodOne() {
-            Console.WriteLine(1, 2);
-        } 
-    }
-
-    class SecondClass { 
-        public void AnotherMethod() {
-            Console.WriteLine(3d,4d,5d);
-            Console.WriteLine(6,7typo); // contains a typo
-        } 
-    }";
-
-    var tree = CSharpSyntaxTree.ParseText(programText);
-    var root = tree.GetRoot();
-    var walker = new ExampleWalker();
-    walker.Visit(root); // should print to console
-}
 
 //TODO
 static void TodoWalk()
