@@ -3,6 +3,7 @@
 using SourceGenerator.Runner.Test;
 
 //HelloWorldGenerated.HelloWorld.SayHello();
+// TODO get inspired and have a look at https://github.com/amis92/csharp-source-generators
 
 var user1 = new User1();
 Console.WriteLine(user1);
